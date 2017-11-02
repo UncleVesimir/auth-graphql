@@ -58,7 +58,11 @@ function signup({ email, password, req }) {
     })
     .then(user => {
       return new Promise((resolve, reject) => {
-        req.logIn(user, (err) => {
+        req.logIn(user, (err) => { //req.login establishes a session for the auth'd user. remember it is our
+        //responsibility to validate the user, as must be the case if a previous user under the same
+        // username/email, does not exist. Passport only handles the session when login is called,
+        // serializing the user id to the token of choice.
+        // the user is then attached to req.user and the user passed to graphql.
           if (err) { reject(err); }
           resolve(user);
         });
