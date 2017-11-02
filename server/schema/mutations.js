@@ -23,9 +23,29 @@ const mutation = new GraphQLObjectType({
       
         //request parameter is the request object from express!
         return AuthService.signup({email, password, req})
-        
+
       }
-    }
+    },
+    login: {
+      type: UserType,
+      args:{
+        email: {type: GraphQLString},
+        password: {type: GraphQLString}
+      },
+      resolve(parentValue, {email, password}, req){
+      
+        //request parameter is the request object from express!
+        return AuthService.login({email, password, req})
+
+      }
+    },
+    logout: {
+      type: UserType,
+      resolve(parentValue, args, req){
+        return AuthService.logout(req);
+      }
+    },
+
   }
 });
 
