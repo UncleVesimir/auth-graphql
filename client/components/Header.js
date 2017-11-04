@@ -9,8 +9,7 @@ class Header extends Component {
   OnLogoutClick = () => {
     this.props.mutate({
       refetchQueries: [{query, variables:{}}]
-      
-    });
+    })
   }
   
   renderButtons = () => {
