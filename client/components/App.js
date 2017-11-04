@@ -1,16 +1,19 @@
 import React from 'react';
 import { Route, Switch} from 'react-router-dom'
 import Header from './Header'
+import LoginForm from './LoginForm'
+import Landing from './Landing';
 
 const App = (props) =>{
 
   const { match } = props;
 
   return (
-    <div>
+    <div className="container">
       <Header/>
       <Switch>
-        <div>Landing</div>
+        <Route exact path="/" component={Landing} />
+        <Route path={match.url + "login"} component={LoginForm}/>
       </Switch>
     </div>
   )
