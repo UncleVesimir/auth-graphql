@@ -8,7 +8,7 @@ import hashHistory from './history';
 import App from './components/App';
 
 const networkInterface = createNetworkInterface({
-  uri:"/graphgql",
+  uri:"/graphql",
   opts: {
     credentials: 'same-origin' // allow apollo-client to send cookies along with request to servers with
     // SAME-ORIGIN as the page domain
