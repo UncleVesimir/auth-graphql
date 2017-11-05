@@ -6,6 +6,8 @@ import SignUpForm from './SignUpForm'
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 
+import requireAuth from './requireAuth';
+
 const App = (props) =>{
 
   const { match } = props;
@@ -17,7 +19,7 @@ const App = (props) =>{
         <Route exact path="/" component={Landing} />
         <Route path={match.url + "login"} component={LoginForm}/>
         <Route path={match.url + "signup"} component={SignUpForm}/>
-        <Route path={match.url + "dashboard"} component={Dashboard}/>
+        <Route path={match.url + "dashboard"} component={requireAuth(Dashboard)}/>
       </Switch>
     </div>
   )
