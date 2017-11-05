@@ -5,12 +5,21 @@ import { graphql } from 'react-apollo';
 import mutation from '../queries/SignUp';
 import query from '../queries/CurrentUser';
 
+import history from '../history';
+
 class SignUpForm extends Component {
   constructor(props){
     super(props);
     this.state = { errors: [] };
     this.formTitle = "Sign Up"
   }
+
+  componentWillUpdate(nextProps){
+    if(!this.props.data.user && nextProps.data.user){
+      history.push("/dashboard");
+    }
+  }
+
   onSubmit = ({ email, password }) => {
     this.props.mutate({
       variables:{ email, password },
@@ -31,4 +40,6 @@ class SignUpForm extends Component {
   }
 }
 
-export default graphql(mutation)(SignUpForm);
+export default graphql(query)(
+  graphql(mutation)(SignUpForm)
+);
